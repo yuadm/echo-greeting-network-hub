@@ -8,73 +8,87 @@ All colors MUST be HSL. This creates a sophisticated, modern design with subtle 
 
 @layer base {
   :root {
-    /* Apple-inspired color palette */
-    --background: 0 0% 99%;
+    /* Healthcare-inspired calming color palette */
+    --background: 210 40% 98%;
     --foreground: 215 25% 15%;
     
     /* Premium surfaces with subtle depth */
     --card: 0 0% 100%;
     --card-foreground: 215 25% 15%;
     --card-shadow: 0 0% 0% / 0.03;
-    --card-border: 220 13% 94%;
+    --card-border: 210 20% 94%;
     
     --popover: 0 0% 100%;
     --popover-foreground: 215 25% 15%;
     
-    /* Apple blue inspired primary colors */
-    --primary: 211 100% 50%;
-    --primary-hover: 211 100% 45%;
+    /* Calming teal/blue primary - healthcare themed */
+    --primary: 190 70% 42%;
+    --primary-hover: 190 70% 36%;
     --primary-foreground: 0 0% 100%;
-    --primary-soft: 211 100% 97%;
+    --primary-soft: 190 70% 96%;
     
-    /* Refined secondary palette */
-    --secondary: 220 13% 95%;
-    --secondary-hover: 220 13% 90%;
-    --secondary-foreground: 215 25% 25%;
+    /* Warm neutral secondary palette */
+    --secondary: 35 30% 96%;
+    --secondary-hover: 35 30% 92%;
+    --secondary-foreground: 35 25% 25%;
     
     /* Sophisticated muted tones */
-    --muted: 220 13% 96%;
-    --muted-hover: 220 13% 92%;
+    --muted: 210 20% 96%;
+    --muted-hover: 210 20% 92%;
     --muted-foreground: 215 16% 47%;
     
-    /* Premium accent colors */
-    --accent: 34 100% 95%;
-    --accent-hover: 34 100% 90%;
-    --accent-foreground: 34 100% 25%;
+    /* Warm accent colors */
+    --accent: 35 80% 95%;
+    --accent-hover: 35 80% 90%;
+    --accent-foreground: 35 80% 30%;
     
-    /* Status colors */
-    --success: 142 76% 36%;
-    --success-soft: 142 76% 95%;
-    --warning: 43 96% 56%;
-    --warning-soft: 43 96% 95%;
-    --destructive: 0 84% 60%;
-    --destructive-soft: 0 84% 95%;
+    /* Healthcare status colors */
+    --success: 160 60% 40%;
+    --success-soft: 160 60% 95%;
+    --warning: 40 90% 50%;
+    --warning-soft: 40 90% 95%;
+    --destructive: 0 70% 55%;
+    --destructive-soft: 0 70% 95%;
     --destructive-foreground: 0 0% 100%;
     
-    /* Borders and inputs */
-    --border: 220 13% 91%;
-    --border-hover: 220 13% 85%;
-    --input: 220 13% 96%;
-    --input-border: 220 13% 87%;
-    --ring: 211 100% 50%;
+    /* Healthcare-specific colors */
+    --care-teal: 190 70% 42%;
+    --care-teal-light: 190 70% 96%;
+    --care-sage: 150 30% 50%;
+    --care-sage-light: 150 30% 96%;
+    --care-warm: 35 50% 55%;
+    --care-warm-light: 35 50% 96%;
+    --care-blue: 210 60% 50%;
+    --care-blue-light: 210 60% 96%;
     
-    /* Premium gradients */
-    --gradient-primary: linear-gradient(135deg, hsl(211 100% 50%), hsl(211 100% 65%));
-    --gradient-surface: linear-gradient(145deg, hsl(0 0% 100%), hsl(220 13% 98%));
-    --gradient-subtle: linear-gradient(180deg, hsl(0 0% 100%), hsl(220 13% 99%));
-    --gradient-card: linear-gradient(145deg, hsl(0 0% 100%) 0%, hsl(220 13% 99%) 100%);
+    /* Borders and inputs */
+    --border: 210 20% 91%;
+    --border-hover: 210 20% 85%;
+    --input: 210 20% 96%;
+    --input-border: 210 20% 87%;
+    --ring: 190 70% 42%;
+    
+    /* Premium gradients - healthcare themed */
+    --gradient-primary: linear-gradient(135deg, hsl(190 70% 42%), hsl(210 60% 50%));
+    --gradient-surface: linear-gradient(145deg, hsl(0 0% 100%), hsl(210 20% 98%));
+    --gradient-subtle: linear-gradient(180deg, hsl(210 40% 98%), hsl(210 20% 99%));
+    --gradient-card: linear-gradient(145deg, hsl(0 0% 100%) 0%, hsl(210 20% 99%) 100%);
+    --gradient-hero: linear-gradient(135deg, hsl(190 70% 96%) 0%, hsl(210 40% 98%) 50%, hsl(35 50% 97%) 100%);
+    --gradient-warm: linear-gradient(135deg, hsl(35 50% 96%), hsl(190 70% 96%));
     
     /* Elegant shadows */
     --shadow-sm: 0 1px 2px hsl(0 0% 0% / 0.05);
     --shadow-md: 0 4px 12px hsl(0 0% 0% / 0.08), 0 1px 3px hsl(0 0% 0% / 0.05);
     --shadow-lg: 0 12px 24px hsl(0 0% 0% / 0.1), 0 4px 8px hsl(0 0% 0% / 0.06);
-    --shadow-glow: 0 0 0 1px hsl(211 100% 50% / 0.1), 0 4px 12px hsl(211 100% 50% / 0.15);
+    --shadow-glow: 0 0 0 1px hsl(190 70% 42% / 0.1), 0 4px 12px hsl(190 70% 42% / 0.15);
+    --shadow-soft: 0 4px 20px hsl(190 70% 42% / 0.1);
     
     /* Border radius system */
     --radius: 0.75rem;
     --radius-sm: 0.5rem;
     --radius-lg: 1rem;
     --radius-xl: 1.5rem;
+    --radius-2xl: 2rem;
     
     /* Typography scale */
     --text-xs: 0.75rem;
@@ -85,6 +99,8 @@ All colors MUST be HSL. This creates a sophisticated, modern design with subtle 
     --text-2xl: 1.5rem;
     --text-3xl: 1.875rem;
     --text-4xl: 2.25rem;
+    --text-5xl: 3rem;
+    --text-6xl: 3.75rem;
     
     /* Spacing system */
     --space-xs: 0.25rem;
@@ -94,37 +110,34 @@ All colors MUST be HSL. This creates a sophisticated, modern design with subtle 
     --space-xl: 2rem;
     --space-2xl: 2.5rem;
     --space-3xl: 3rem;
+    --space-4xl: 4rem;
+    --space-5xl: 5rem;
     
     /* Animation timings */
     --duration-fast: 150ms;
     --duration-normal: 200ms;
     --duration-slow: 300ms;
+    --duration-slower: 500ms;
     --ease-smooth: cubic-bezier(0.4, 0, 0.2, 1);
     --ease-bounce: cubic-bezier(0.68, -0.55, 0.265, 1.55);
+    --ease-out-expo: cubic-bezier(0.19, 1, 0.22, 1);
 
     /* Employee Portal Specific Colors */
-    --employee-background: 220 13% 97%;
+    --employee-background: 210 20% 97%;
     --employee-card: 0 0% 100%;
-    --employee-accent: 211 100% 50%;
-    --employee-success: 142 76% 36%;
-    --employee-warning: 43 96% 56%;
-    --employee-danger: 0 84% 60%;
+    --employee-accent: 190 70% 42%;
+    --employee-success: 160 60% 40%;
+    --employee-warning: 40 90% 50%;
+    --employee-danger: 0 70% 55%;
 
     --sidebar-background: 0 0% 98%;
-
     --sidebar-foreground: 240 5.3% 26.1%;
-
     --sidebar-primary: 240 5.9% 10%;
-
     --sidebar-primary-foreground: 0 0% 98%;
-
     --sidebar-accent: 240 4.8% 95.9%;
-
     --sidebar-accent-foreground: 240 5.9% 10%;
-
-    --sidebar-border: 220 13% 91%;
-
-    --sidebar-ring: 217.2 91.2% 59.8%;
+    --sidebar-border: 210 20% 91%;
+    --sidebar-ring: 190 70% 42%;
   }
 
   .dark {
