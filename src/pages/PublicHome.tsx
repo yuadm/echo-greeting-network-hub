@@ -7,8 +7,10 @@ import { AlertTriangle } from 'lucide-react';
 import { CompanyProvider, useCompany } from '@/contexts/CompanyContext';
 import { Navbar } from '@/components/landing/Navbar';
 import { HeroSection } from '@/components/landing/HeroSection';
-import { AboutSection } from '@/components/landing/AboutSection';
+import { WhyChooseUs } from '@/components/landing/WhyChooseUs';
+import { TestimonialsSection } from '@/components/landing/TestimonialsSection';
 import { ServicesSection } from '@/components/landing/ServicesSection';
+import { AboutSection } from '@/components/landing/AboutSection';
 import { CareersSection } from '@/components/landing/CareersSection';
 import { ContactSection } from '@/components/landing/ContactSection';
 import { Footer } from '@/components/landing/Footer';
@@ -84,8 +86,10 @@ function PublicHomeContent() {
     <div className="min-h-screen bg-background">
       <Navbar companyName={companyName} companyLogo={companyLogo} />
       <HeroSection companyName={companyName} />
-      <AboutSection />
+      <WhyChooseUs />
       <ServicesSection />
+      <TestimonialsSection />
+      <AboutSection />
       <CareersSection />
       <ContactSection companyName={companyName} />
       <Footer companyName={companyName} companyLogo={companyLogo} />
