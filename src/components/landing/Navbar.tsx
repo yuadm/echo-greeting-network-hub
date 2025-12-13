@@ -3,7 +3,8 @@ import { useNavigate } from 'react-router-dom';
 import { Menu, X } from 'lucide-react';
 import { Button } from '@/components/ui/button';
 import { cn } from '@/lib/utils';
-import { motion, AnimatePresence } from 'framer-motion';
+import { useTheme } from 'next-themes';
+import { Moon, Sun } from 'lucide-react';
 
 interface NavbarProps {
   companyName: string;
@@ -12,14 +13,16 @@ interface NavbarProps {
 
 const navLinks = [
   { name: 'Home', href: '#home' },
-  { name: 'Services', href: '#services' },
   { name: 'About Us', href: '#about' },
-  { name: 'Contact Us', href: '#contact' },
+  { name: 'Our Services', href: '#services' },
+  { name: 'Careers', href: '#careers' },
+  { name: 'Contact', href: '#contact' },
 ];
 
 export function Navbar({ companyName, companyLogo }: NavbarProps) {
   const [isScrolled, setIsScrolled] = useState(false);
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
+  const { theme, setTheme } = useTheme();
   const navigate = useNavigate();
 
   useEffect(() => {
@@ -39,12 +42,9 @@ export function Navbar({ companyName, companyLogo }: NavbarProps) {
   };
 
   return (
-    <motion.nav
-      initial={{ y: -100 }}
-      animate={{ y: 0 }}
-      transition={{ duration: 0.5, ease: 'easeOut' }}
+    <nav
       className={cn(
-        'fixed top-0 left-0 right-0 z-50 transition-all duration-300',
+        'fixed top-0 left-0 right-0 z-50 transition-all duration-slow',
         isScrolled
           ? 'bg-background/95 backdrop-blur-lg shadow-md py-3'
           : 'bg-transparent py-5'
@@ -66,51 +66,61 @@ export function Navbar({ companyName, companyLogo }: NavbarProps) {
                 </span>
               </div>
             )}
-            <span className={cn(
-              "text-xl font-bold hidden sm:block transition-colors",
-              isScrolled ? "text-foreground" : "text-foreground"
-            )}>
+            <span className="text-xl font-semibold text-foreground hidden sm:block">
               {companyName}
             </span>
           </button>
 
-          {/* Desktop Navigation - Center */}
+          {/* Desktop Navigation */}
           <div className="hidden lg:flex items-center gap-1">
             {navLinks.map((link) => (
               <button
                 key={link.name}
                 onClick={() => scrollToSection(link.href)}
-                className={cn(
-                  "px-4 py-2 font-medium transition-colors rounded-lg",
-                  isScrolled 
-                    ? "text-muted-foreground hover:text-foreground hover:bg-muted/50"
-                    : "text-foreground/80 hover:text-foreground hover:bg-foreground/5"
-                )}
+                className="px-4 py-2 text-muted-foreground hover:text-foreground font-medium transition-colors rounded-lg hover:bg-muted/50"
               >
                 {link.name}
               </button>
             ))}
           </div>
 
-          {/* Desktop Actions - Right */}
+          {/* Desktop Actions */}
           <div className="hidden lg:flex items-center gap-3">
             <Button
               variant="outline"
-              onClick={() => navigate('/job-application')}
-              className="rounded-full px-6 border-primary text-primary hover:bg-primary hover:text-primary-foreground transition-all duration-200 hover:scale-105"
+              size="icon"
+              onClick={() => setTheme(theme === 'dark' ? 'light' : 'dark')}
+              className="rounded-full"
             >
-              Join the Team
+              <Sun className="h-5 w-5 rotate-0 scale-100 transition-all dark:-rotate-90 dark:scale-0" />
+              <Moon className="absolute h-5 w-5 rotate-90 scale-0 transition-all dark:rotate-0 dark:scale-100" />
             </Button>
             <Button
+              variant="outline"
               onClick={() => navigate('/login')}
-              className="rounded-full px-6 bg-primary hover:bg-primary-hover transition-all duration-200 hover:scale-105 hover:shadow-lg"
+              className="rounded-full px-6"
             >
-              Staff Portal
+              Employee Login
+            </Button>
+            <Button
+              onClick={() => navigate('/job-application')}
+              className="rounded-full px-6 shadow-soft"
+            >
+              Apply Now
             </Button>
           </div>
 
           {/* Mobile Menu Button */}
           <div className="flex lg:hidden items-center gap-2">
+            <Button
+              variant="outline"
+              size="icon"
+              onClick={() => setTheme(theme === 'dark' ? 'light' : 'dark')}
+              className="rounded-full"
+            >
+              <Sun className="h-5 w-5 rotate-0 scale-100 transition-all dark:-rotate-90 dark:scale-0" />
+              <Moon className="absolute h-5 w-5 rotate-90 scale-0 transition-all dark:rotate-0 dark:scale-100" />
+            </Button>
             <Button
               variant="ghost"
               size="icon"
@@ -127,46 +137,41 @@ export function Navbar({ companyName, companyLogo }: NavbarProps) {
         </div>
 
         {/* Mobile Menu */}
-        <AnimatePresence>
-          {isMobileMenuOpen && (
-            <motion.div
-              initial={{ opacity: 0, height: 0 }}
-              animate={{ opacity: 1, height: 'auto' }}
-              exit={{ opacity: 0, height: 0 }}
-              transition={{ duration: 0.2 }}
-              className="lg:hidden overflow-hidden mt-4"
-            >
-              <div className="bg-card rounded-2xl p-4 shadow-lg border border-border">
-                <div className="flex flex-col gap-2">
-                  {navLinks.map((link) => (
-                    <button
-                      key={link.name}
-                      onClick={() => scrollToSection(link.href)}
-                      className="px-4 py-3 text-left text-foreground font-medium transition-colors rounded-xl hover:bg-muted"
-                    >
-                      {link.name}
-                    </button>
-                  ))}
-                  <hr className="my-2 border-border" />
-                  <Button
-                    variant="outline"
-                    onClick={() => navigate('/job-application')}
-                    className="w-full rounded-xl border-primary text-primary"
-                  >
-                    Join the Team
-                  </Button>
-                  <Button
-                    onClick={() => navigate('/login')}
-                    className="w-full rounded-xl"
-                  >
-                    Staff Portal
-                  </Button>
-                </div>
-              </div>
-            </motion.div>
+        <div
+          className={cn(
+            'lg:hidden overflow-hidden transition-all duration-slow',
+            isMobileMenuOpen ? 'max-h-96 mt-4' : 'max-h-0'
           )}
-        </AnimatePresence>
+        >
+          <div className="bg-card rounded-2xl p-4 shadow-lg border border-border">
+            <div className="flex flex-col gap-2">
+              {navLinks.map((link) => (
+                <button
+                  key={link.name}
+                  onClick={() => scrollToSection(link.href)}
+                  className="px-4 py-3 text-left text-foreground font-medium transition-colors rounded-xl hover:bg-muted"
+                >
+                  {link.name}
+                </button>
+              ))}
+              <hr className="my-2 border-border" />
+              <Button
+                variant="outline"
+                onClick={() => navigate('/login')}
+                className="w-full rounded-xl"
+              >
+                Employee Login
+              </Button>
+              <Button
+                onClick={() => navigate('/job-application')}
+                className="w-full rounded-xl"
+              >
+                Apply Now
+              </Button>
+            </div>
+          </div>
+        </div>
       </div>
-    </motion.nav>
+    </nav>
   );
 }

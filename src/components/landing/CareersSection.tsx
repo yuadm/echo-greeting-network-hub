@@ -7,10 +7,9 @@ import {
   Banknote,
   ArrowRight,
   CheckCircle,
-  Users
+  Users,
+  Clock
 } from 'lucide-react';
-import { motion } from 'framer-motion';
-import careersTeamImage from '@/assets/images/careers-team.jpg';
 
 const benefits = [
   {
@@ -36,10 +35,26 @@ const benefits = [
 ];
 
 const steps = [
-  { number: '01', title: 'Apply Online', description: 'Complete our simple online application form.' },
-  { number: '02', title: 'Interview', description: 'Meet our friendly team for a chat.' },
-  { number: '03', title: 'Training', description: 'Receive comprehensive, paid training.' },
-  { number: '04', title: 'Start Caring', description: 'Begin making a difference!' },
+  {
+    number: '01',
+    title: 'Apply Online',
+    description: 'Complete our simple online application form with your details and experience.',
+  },
+  {
+    number: '02',
+    title: 'Interview',
+    description: 'Meet our friendly team for an informal chat about your passion for care.',
+  },
+  {
+    number: '03',
+    title: 'Training',
+    description: 'Receive comprehensive, paid training to prepare you for your new role.',
+  },
+  {
+    number: '04',
+    title: 'Start Caring',
+    description: 'Begin your rewarding career making a difference in people\'s lives.',
+  },
 ];
 
 const requirements = [
@@ -51,38 +66,18 @@ const requirements = [
   'No experience required - we provide training',
 ];
 
-const containerVariants = {
-  hidden: { opacity: 0 },
-  visible: {
-    opacity: 1,
-    transition: { staggerChildren: 0.1 }
-  }
-};
-
-const itemVariants = {
-  hidden: { opacity: 0, y: 20 },
-  visible: {
-    opacity: 1,
-    y: 0,
-    transition: { duration: 0.5 }
-  }
-};
-
 export function CareersSection() {
   const navigate = useNavigate();
 
   return (
-    <section id="careers" className="py-24 bg-muted/30 relative overflow-hidden">
-      <div className="container mx-auto px-4 lg:px-8">
+    <section id="careers" className="py-24 bg-background relative overflow-hidden">
+      {/* Background decoration */}
+      <div className="absolute top-0 right-0 w-1/2 h-full bg-gradient-warm opacity-30" />
+      
+      <div className="container mx-auto px-4 lg:px-8 relative z-10">
         {/* Section header */}
-        <motion.div 
-          initial={{ opacity: 0, y: 20 }}
-          whileInView={{ opacity: 1, y: 0 }}
-          viewport={{ once: true }}
-          transition={{ duration: 0.5 }}
-          className="text-center max-w-3xl mx-auto mb-16"
-        >
-          <span className="inline-block px-4 py-1.5 bg-accent rounded-full text-accent-foreground text-sm font-medium mb-4">
+        <div className="text-center max-w-3xl mx-auto mb-16">
+          <span className="inline-block px-4 py-1.5 bg-care-warm-light rounded-full text-care-warm text-sm font-medium mb-4">
             Join Our Team
           </span>
           <h2 className="text-3xl sm:text-4xl lg:text-5xl font-bold text-foreground mb-6">
@@ -92,39 +87,17 @@ export function CareersSection() {
             Looking for a job that makes a real difference? Join our team of dedicated 
             caregivers and discover the joy of helping others while building a fulfilling career.
           </p>
-        </motion.div>
-
-        {/* Hero Image */}
-        <motion.div
-          initial={{ opacity: 0, scale: 0.95 }}
-          whileInView={{ opacity: 1, scale: 1 }}
-          viewport={{ once: true }}
-          transition={{ duration: 0.6 }}
-          className="rounded-3xl overflow-hidden shadow-xl mb-16"
-        >
-          <img
-            src={careersTeamImage}
-            alt="Our diverse team of caregivers"
-            className="w-full h-64 sm:h-80 object-cover"
-          />
-        </motion.div>
+        </div>
 
         {/* Benefits Grid */}
-        <motion.div 
-          variants={containerVariants}
-          initial="hidden"
-          whileInView="visible"
-          viewport={{ once: true }}
-          className="grid sm:grid-cols-2 lg:grid-cols-4 gap-6 mb-16"
-        >
-          {benefits.map((benefit) => (
-            <motion.div
+        <div className="grid sm:grid-cols-2 lg:grid-cols-4 gap-6 mb-20">
+          {benefits.map((benefit, index) => (
+            <div
               key={benefit.title}
-              variants={itemVariants}
-              className="group bg-card rounded-2xl p-6 border border-border hover:border-accent/50 transition-all duration-300 hover:shadow-lg text-center"
+              className="group bg-card rounded-2xl p-6 border border-border hover:border-care-warm/30 transition-all duration-slow hover:shadow-lg text-center"
             >
-              <div className="w-14 h-14 rounded-2xl bg-accent flex items-center justify-center mx-auto mb-5 group-hover:scale-110 transition-transform duration-300">
-                <benefit.icon className="w-7 h-7 text-accent-foreground" />
+              <div className="w-16 h-16 rounded-2xl bg-care-warm-light flex items-center justify-center mx-auto mb-5 group-hover:scale-110 transition-transform duration-slow">
+                <benefit.icon className="w-8 h-8 text-care-warm" />
               </div>
               <h3 className="text-lg font-semibold text-foreground mb-2">
                 {benefit.title}
@@ -132,52 +105,46 @@ export function CareersSection() {
               <p className="text-sm text-muted-foreground">
                 {benefit.description}
               </p>
-            </motion.div>
+            </div>
           ))}
-        </motion.div>
+        </div>
 
         {/* Application Process */}
-        <motion.div
-          initial={{ opacity: 0, y: 30 }}
-          whileInView={{ opacity: 1, y: 0 }}
-          viewport={{ once: true }}
-          transition={{ duration: 0.6 }}
-          className="bg-gradient-to-br from-primary to-primary-hover rounded-3xl p-8 sm:p-12 text-primary-foreground mb-16"
-        >
-          <div className="text-center mb-10">
-            <h3 className="text-2xl sm:text-3xl font-bold mb-3">
+        <div className="bg-gradient-to-br from-primary to-care-blue rounded-3xl p-8 sm:p-12 text-primary-foreground mb-20">
+          <div className="text-center mb-12">
+            <h3 className="text-2xl sm:text-3xl font-bold mb-4">
               How to Join Us
             </h3>
-            <p className="text-primary-foreground/80">
+            <p className="text-primary-foreground/80 max-w-2xl mx-auto">
               Our simple 4-step process makes it easy to start your career in care
             </p>
           </div>
 
           <div className="grid sm:grid-cols-2 lg:grid-cols-4 gap-8">
             {steps.map((step, index) => (
-              <div key={step.number} className="relative text-center">
+              <div key={step.number} className="relative">
                 {/* Connector line */}
                 {index < steps.length - 1 && (
                   <div className="hidden lg:block absolute top-8 left-full w-full h-0.5 bg-primary-foreground/20" />
                 )}
-                <div className="inline-flex items-center justify-center w-16 h-16 rounded-full bg-primary-foreground/10 border-2 border-primary-foreground/30 mb-4">
-                  <span className="text-2xl font-bold">{step.number}</span>
+                <div className="text-center">
+                  <div className="inline-flex items-center justify-center w-16 h-16 rounded-full bg-primary-foreground/10 border-2 border-primary-foreground/30 mb-4">
+                    <span className="text-2xl font-bold">{step.number}</span>
+                  </div>
+                  <h4 className="text-lg font-semibold mb-2">{step.title}</h4>
+                  <p className="text-sm text-primary-foreground/70">
+                    {step.description}
+                  </p>
                 </div>
-                <h4 className="text-lg font-semibold mb-2">{step.title}</h4>
-                <p className="text-sm text-primary-foreground/70">{step.description}</p>
               </div>
             ))}
           </div>
-        </motion.div>
+        </div>
 
         {/* Requirements and CTA */}
         <div className="grid lg:grid-cols-2 gap-12 items-center">
-          <motion.div
-            initial={{ opacity: 0, x: -30 }}
-            whileInView={{ opacity: 1, x: 0 }}
-            viewport={{ once: true }}
-            transition={{ duration: 0.5 }}
-          >
+          {/* Requirements */}
+          <div>
             <h3 className="text-2xl font-bold text-foreground mb-6">
               What We're Looking For
             </h3>
@@ -191,24 +158,19 @@ export function CareersSection() {
                 </div>
               ))}
             </div>
-          </motion.div>
+          </div>
 
-          <motion.div
-            initial={{ opacity: 0, x: 30 }}
-            whileInView={{ opacity: 1, x: 0 }}
-            viewport={{ once: true }}
-            transition={{ duration: 0.5 }}
-            className="bg-card rounded-3xl p-8 border border-border shadow-lg"
-          >
+          {/* CTA Card */}
+          <div className="bg-card rounded-3xl p-8 border border-border shadow-lg">
             <div className="flex items-center gap-4 mb-6">
-              <div className="w-14 h-14 rounded-2xl bg-primary-soft flex items-center justify-center">
-                <Users className="w-7 h-7 text-primary" />
+              <div className="w-16 h-16 rounded-2xl bg-primary-soft flex items-center justify-center">
+                <Users className="w-8 h-8 text-primary" />
               </div>
               <div>
                 <h3 className="text-xl font-bold text-foreground">
                   Ready to Make a Difference?
                 </h3>
-                <p className="text-muted-foreground text-sm">
+                <p className="text-muted-foreground">
                   Start your application today
                 </p>
               </div>
@@ -216,18 +178,30 @@ export function CareersSection() {
 
             <p className="text-muted-foreground mb-6">
               Join hundreds of caring individuals who have found their calling with us. 
-              Whether you're new to care or experienced, we'd love to hear from you.
+              Whether you're new to care or an experienced professional, we'd love to 
+              hear from you.
             </p>
 
-            <Button
-              size="lg"
-              onClick={() => navigate('/job-application')}
-              className="w-full rounded-full group bg-primary hover:bg-primary-hover transition-all duration-200 hover:scale-[1.02]"
-            >
-              Apply Now
-              <ArrowRight className="ml-2 w-5 h-5 group-hover:translate-x-1 transition-transform" />
-            </Button>
-          </motion.div>
+            <div className="flex flex-col sm:flex-row gap-4">
+              <Button
+                size="lg"
+                onClick={() => navigate('/job-application')}
+                className="rounded-full flex-1 group"
+              >
+                Apply Now
+                <ArrowRight className="ml-2 w-5 h-5 group-hover:translate-x-1 transition-transform" />
+              </Button>
+              <Button
+                size="lg"
+                variant="outline"
+                onClick={() => navigate('/login')}
+                className="rounded-full flex-1"
+              >
+                <Clock className="mr-2 w-5 h-5" />
+                Employee Portal
+              </Button>
+            </div>
+          </div>
         </div>
       </div>
     </section>
